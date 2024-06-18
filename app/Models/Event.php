@@ -20,6 +20,7 @@ class Event extends Model
         'description',
         'organizer_id',
         'event_date',
+        'reserve_deadline',
         'location',
         'price',
         'attendees'

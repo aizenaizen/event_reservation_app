@@ -16,7 +16,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        return EventResource::collection(Event::where('event_date', '>=', now())->orderBy('created_at', 'desc')->paginate(5));
+        return EventResource::collection(Event::where('event_date', '>=', now())->orderBy('id', 'desc')->paginate(5));
     }
 
     /**
@@ -27,6 +27,7 @@ class EventController extends Controller
         $this->validate($request, [
             'title' => 'required|max:20|unique:events,title',
             'event_date' => 'required|date|after:today',
+            'reserve_deadline' => 'required|date|after:today',
             'location' => 'required|min:2',
             'price' => 'required|gte:0.01',
             'attendees' => 'required|gte:1'
@@ -37,6 +38,7 @@ class EventController extends Controller
             'description' => $request->input('description'),
             'organizer_id' => auth()->id ?? 1,
             'event_date' => $request->input('event_date'),
+            'reserve_deadline' => $request->input('reserve_deadline'),
             'location' => $request->input('location'),
             'price' => $request->input('price'),
             'attendees' => $request->input('attendees'),
@@ -65,6 +67,7 @@ class EventController extends Controller
         $this->validate($request, [
             'title' => ['sometimes', 'max:20', Rule::unique('event')->ignore($event->title(), 'title')],
             'event_date' => 'required|date|after:today',
+            'reserve_deadline' => 'required|date|after:today',
             'location' => 'required|min:2',
             'price' => 'required|gte:0.01',
             'attendees' => 'required|gte:1'
@@ -75,6 +78,7 @@ class EventController extends Controller
             'description' => $request->input('description'),
             'organizer_id' => auth()->id ?? 1,
             'event_date' => $request->input('event_date'),
+            'reserve_deadline' => $request->input('reserve_deadline'),
             'location' => $request->input('location'),
             'price' => $request->input('price'),
             'attendees' => $request->input('attendees'),

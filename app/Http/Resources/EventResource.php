@@ -21,6 +21,7 @@ class EventResource extends JsonResource
                 'title' => $this->title,
                 'description' => $this->description,
                 'event_date' => $this->event_date,
+                'reserve_deadline' => strtotime($this->reserve_deadline)*1000,
                 'location' => $this->location,
                 'price' => $this->price,
                 'attendees' => $this->attendees,

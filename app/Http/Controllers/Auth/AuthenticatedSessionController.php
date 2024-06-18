@@ -24,8 +24,8 @@ class AuthenticatedSessionController extends Controller
         return response([
             'success' => true,
             'data' => [
-                'token' => $user->createToken($user->name())->plainTextToken,
-                'name' => $user->name()
+                'token' => $user->createToken($user->name)->plainTextToken,
+                'name' => $user->name
             ],
             'message' => 'User logged in!'
         ]);

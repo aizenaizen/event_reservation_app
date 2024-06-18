@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->dateTime('event_date');
+            $table->dateTime('reserve_deadline')->nullable();
             $table->string('location')->nullable();
             $table->float('price', 10, 2)->default(0);
             $table->integer('attendees')->default(0);

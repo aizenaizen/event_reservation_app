@@ -15,7 +15,8 @@ class EventsTableSeeder extends Seeder
     {
         Event::factory()->count(10)->create([
             'organizer_id' => 1,
-            'event_date' => now()
+            'attendees' => 2,
+            'event_date' => date('Y-m-d H:i:s', strtotime('+1 day', time()))
         ]);
     }
 }
